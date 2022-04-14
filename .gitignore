@@ -1,0 +1,10 @@
+node_modules
+.env
+config.env
+.DS_Store
+
+other
+other_files
+
+server/config.env
+server/node_modules
