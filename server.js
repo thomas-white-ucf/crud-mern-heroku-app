@@ -6,8 +6,9 @@ import dotenv from "dotenv";
 import postsRoutes from "./server/routes/posts.js";
 // Accessing the path module - available default now ?
 import path from "path";
+const router = express.Router();
 
-dotenv.config({ path: "./server/config.env" });
+dotenv.config({ path: "./config.env" });
 // import dbo from "./db/conn.js";
 
 // *  app = express()
@@ -30,7 +31,7 @@ mongoose
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.resolve(__dirname, "./client/build")));
+  app.use(express.static(path.resolve(__dirname, "/client/build")));
   // app.use(express.static("client/build"));
 }
 // ! Make sure to Specify Routes after Middleware-
@@ -45,9 +46,13 @@ app.use("/posts", postsRoutes);
 
 // Send every other request to the React app
 // !Define any API routes before this runs
+router.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "/client/build/index.html"));
+  // __dirname : it will resolve in your project
+});
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  res.sendFile(path.join(__dirname, "/client/build/index.html"));
 });
 
 app.listen(PORT, () => {
