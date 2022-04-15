@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import postsRoutes from "./server/routes/posts.js";
 // Accessing the path module - available default now ?
 import path from "path";
+
 const router = express.Router();
 
 dotenv.config({ path: "./config.env" });
@@ -44,12 +45,16 @@ app.use("/posts", postsRoutes);
 //   res.send("Hello from Homepage. =] App/Server is Running_>");
 // });
 
-// Send every other request to the React app
-// !Define any API routes before this runs
+//
+app.use("/", router);
+
 router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/client/build/index.html"));
   // __dirname : it will resolve in your project
 });
+
+// Send every other request to the React app
+// !Define any API routes before this runs
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "/client/build/index.html"));
