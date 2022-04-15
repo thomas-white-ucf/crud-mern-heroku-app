@@ -49,6 +49,11 @@ app.get("/", (req, res) => {
   res.send("Hello from Homepage. =] App/Server is Running_>");
 });
 
+if (process.env.NODE_ENV === "production") {
+  console.log("🚀 ~ file: server.js ~ line 53 ~ production", production);
+  app.use(express.static("client/build"));
+}
+
 // mongoose.set("useFindAndModify", false);
 
 // *____Routes
