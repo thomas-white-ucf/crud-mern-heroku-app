@@ -25,27 +25,27 @@ app.use(cors());
 // *__Database connect..
 mongoose
   .connect(CONNECTION_URL)
-  .then(() => console.log(`Mongo DataBase connected`))
+  .then(() => console.log(`MongoDB connected`))
   .catch((error) => console.log(error.message));
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  app.use(express.static(path.resolve(__dirname, "./client/build")));
+  // app.use(express.static("client/build"));
 }
+// ! Make sure to Specify Routes after Middleware-
 // Define API routes here
 // *____Routes
+app.use("/posts", postsRoutes);
 // app.use(require("./routes/record"));
 // app.use("/users", usersRoutes);
-
-// ! Make sure to Specify Routes after Middleware-
-app.use("/posts", postsRoutes);
-
 // app.get("/", (req, res) => {
 //   res.send("Hello from Homepage. =] App/Server is Running_>");
 // });
 
 // Send every other request to the React app
-// Define any API routes before this runs
+// !Define any API routes before this runs
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });

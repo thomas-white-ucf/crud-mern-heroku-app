@@ -3,9 +3,6 @@ node_modules
 config.env
 .DS_Store
 
-other
-other_files
-
 server/config.env
 server/node_modules
 
