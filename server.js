@@ -20,6 +20,8 @@ const CONNECTION_URL = process.env.ATLAS_URI;
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
+//
+//
 
 // *__Database connect..
 mongoose
@@ -39,13 +41,16 @@ app.use("/posts", postsRoutes);
 app.get("/", (req, res) => {
   res.send("Hello from Homepage. =] App/Server is Running_>");
 });
+// app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static("public"));
+app.use('/public', express.static(path.join('index.js')))
 
 // Step 1:
-app.use(express.static(path.resolve("client/build")));
-// Step 2:
-app.get("*", function (request, response) {
-  response.sendFile(path.resolve("client/build", "index.html"));
-});
+// app.use(express.static(path.resolve("client/build")));
+// // Step 2:
+// app.get("*", function (request, response) {
+//   response.sendFile(path.resolve("client/build", "index.html"));
+// });
 
 // main().catch((error) => console.log(error.message));
 // async function main() {
@@ -57,6 +62,8 @@ app.get("*", function (request, response) {
 //   );
 // }
 // ** if (true) {  -- TEST LOCAL DEV_ENV-create
+// ! DEFAULT NODE_ENV By default NODE_ENV is set to production.
+// ! If NODE_ENV is any other value, the pruning step will be skipped.
 // if (process.env.NODE_ENV === "production") {
 //   app.use(express.static("client/build"));
 //   console.log("🚀 production ON");
