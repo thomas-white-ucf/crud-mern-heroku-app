@@ -43,8 +43,8 @@ mongoose
 //   );
 // }
 if (process.env.NODE_ENV === "production") {
-  console.log("🚀 production ON");
   app.use(express.static("client/build"));
+  console.log("🚀 production ON");
 }
 
 app.use("/posts", postsRoutes);
