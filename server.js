@@ -42,17 +42,17 @@ mongoose
 //     )
 //   );
 // }
-
-app.use("/posts", postsRoutes);
-
-app.get("/", (req, res) => {
-  res.send("Hello from Homepage. =] App/Server is Running_>");
-});
-
 if (process.env.NODE_ENV === "production") {
   console.log("🚀 production ON");
   app.use(express.static("client/build"));
 }
+
+app.use("/posts", postsRoutes);
+
+// app.get("/", (req, res) => {
+//   res.send("Hello from Homepage. =] App/Server is Running_>");
+// });
+
 
 // mongoose.set("useFindAndModify", false);
 
