@@ -1,8 +1,8 @@
-import cors from "cors";
 import express from "express";
 import bodyParser from "body-parser";
-import dotenv from "dotenv";
 import mongoose from "mongoose";
+import cors from "cors";
+import dotenv from "dotenv";
 import postsRoutes from "./server/routes/posts.js";
 //
 dotenv.config({ path: "./server/config.env" });
