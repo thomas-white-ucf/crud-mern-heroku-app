@@ -40,9 +40,9 @@ if (process.env.NODE_ENV === "production") {
 // ! Make sure to Specify Routes after Middleware-
 app.use("/posts", postsRoutes);
 
-app.get("/", (req, res) => {
-  res.send("Hello from Homepage. =] App/Server is Running_>");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello from Homepage. =] App/Server is Running_>");
+// });
 
 // Send every other request to the React app
 // Define any API routes before this runs
