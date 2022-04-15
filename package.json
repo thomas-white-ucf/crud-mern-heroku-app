@@ -6,7 +6,8 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js && cd client && npm run start",
+    "start": "node server.js && cd client && yarn start",
+    "build-client": "cd client && yarn build",
     "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "u": "yarn upgrade --latest",

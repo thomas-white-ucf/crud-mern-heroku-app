@@ -8,3 +8,6 @@ other_files
 
 server/config.env
 server/node_modules
+
+# new ~~/ notes
+work_FLOW_notes.js

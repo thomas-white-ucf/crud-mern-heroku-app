@@ -4,7 +4,9 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import postsRoutes from "./server/routes/posts.js";
-//
+// Accessing the path module - available default now ?
+import path from "path";
+
 dotenv.config({ path: "./server/config.env" });
 // import dbo from "./db/conn.js";
 
@@ -19,8 +21,6 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-// ! Make sure to Specify Routes after Middleware-
-
 // *__Database connect..
 mongoose
   .connect(CONNECTION_URL)
@@ -33,6 +33,20 @@ mongoose
   )
   .catch((error) => console.log(error.message));
 
+// ! Make sure to Specify Routes after Middleware-
+app.use("/posts", postsRoutes);
+
+app.get("/", (req, res) => {
+  res.send("Hello from Homepage. =] App/Server is Running_>");
+});
+
+// Step 1:
+app.use(express.static(path.resolve("client/build")));
+// Step 2:
+app.get("*", function (request, response) {
+  response.sendFile(path.resolve("client/build", "index.html"));
+});
+
 // main().catch((error) => console.log(error.message));
 // async function main() {
 //   await mongoose.connect(CONNECTION_URL);
@@ -43,16 +57,10 @@ mongoose
 //   );
 // }
 // ** if (true) {  -- TEST LOCAL DEV_ENV-create
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("./client/build"));
-  console.log("🚀 production ON");
-}
-
-app.use("/posts", postsRoutes);
-
-// app.get("/", (req, res) => {
-//   res.send("Hello from Homepage. =] App/Server is Running_>");
-// });
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("client/build"));
+//   console.log("🚀 production ON");
+// }
 
 // mongoose.set("useFindAndModify", false);
 
