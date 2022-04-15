@@ -37,9 +37,9 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-app.get("/", (req, res) => {
-  res.send("Hello from Homepage. =] App/Server is Running_>");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello from Homepage. =] App/Server is Running_>");
+// });
 
 app.listen(PORT, () =>
   console.log(
