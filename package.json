@@ -2,19 +2,20 @@
   "name": "crud-mern-heroku-app",
   "homepage": "https://crud-mern-heroku-app.herokuapp.com/",
   "version": "1.0.0",
-  "description": "",
+  "description": "Creating a boilerplate for MERN code stacks",
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
-    "client": "cd client && npm run start",
+    "start": "node server.js && cd client && npm run start",
     "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "u": "yarn upgrade --latest",
     "u-i": "yarn upgrade-interactive --latest",
     "i-check": "yarn install --check-files"
   },
-  "keywords": [],
+  "keywords": [
+    "heroku"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -27,5 +28,8 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
+  },
+  "engines": {
+    "node": "v16.14.0"
   }
 }

@@ -42,6 +42,7 @@ mongoose
 //     )
 //   );
 // }
+// ** if (true) {  -- TEST LOCAL DEV_ENV-create
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
   console.log("🚀 production ON");
@@ -52,7 +53,6 @@ app.use("/posts", postsRoutes);
 // app.get("/", (req, res) => {
 //   res.send("Hello from Homepage. =] App/Server is Running_>");
 // });
-
 
 // mongoose.set("useFindAndModify", false);
 
