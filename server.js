@@ -25,7 +25,7 @@ app.use(cors());
 // *__Database connect..
 mongoose
   .connect(CONNECTION_URL)
-  .then(() => console.log(`Connected, server / Database - on PORT: ${PORT}`))
+  .then(() => console.log(`Mongo DataBase connected`))
   .catch((error) => console.log(error.message));
 
 // Serve up static assets (usually on heroku)
