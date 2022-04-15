@@ -21,58 +21,35 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 //
-app.use(express.static("public"));
-//
 
 // *__Database connect..
 mongoose
   .connect(CONNECTION_URL)
-  .then(() => console.log(`Connected, server is running on PORT: ${PORT}`))
+  .then(() => console.log(`Connected, server / Database - on PORT: ${PORT}`))
   .catch((error) => console.log(error.message));
 
-// ! Make sure to Specify Routes after Middleware-
-// app.use("/posts", postsRoutes);
-
+// Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
-// app.get("/", (req, res) => {
-//   res.send("Hello from Homepage. =] App/Server is Running_>");
-// });
-
-app.listen(PORT, () =>
-  console.log(
-    `Server And Database connected, app.listen - PORT: ${PORT}`
-  )
-);
-
-// Step 1:
-// app.use(express.static(path.resolve("client/build")));
-// // Step 2:
-// app.get("*", function (request, response) {
-//   response.sendFile(path.resolve("client/build", "index.html"));
-// });
-
-// main().catch((error) => console.log(error.message));
-// async function main() {
-//   await mongoose.connect(CONNECTION_URL);
-//   app.listen(PORT, () =>
-//     console.log(
-//       `Server And Database connected, server is running on PORT: ${PORT}`
-//     )
-//   );
-// }
-// ** if (true) {  -- TEST LOCAL DEV_ENV-create
-// ! DEFAULT NODE_ENV By default NODE_ENV is set to production.
-// ! If NODE_ENV is any other value, the pruning step will be skipped.
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("client/build"));
-//   console.log("🚀 production ON");
-// }
-
-// mongoose.set("useFindAndModify", false);
-
+// Define API routes here
 // *____Routes
 // app.use(require("./routes/record"));
 // app.use("/users", usersRoutes);
+
+// ! Make sure to Specify Routes after Middleware-
+app.use("/posts", postsRoutes);
+
+app.get("/", (req, res) => {
+  res.send("Hello from Homepage. =] App/Server is Running_>");
+});
+
+// Send every other request to the React app
+// Define any API routes before this runs
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
+
+app.listen(PORT, () => {
+  console.log(`🌎 ==> API server now on port ${PORT}!`);
+});
