@@ -5,3 +5,4 @@
 scripts
 "heroku-postbuild": "yarn build",
 "install": "cd client && yarn install",
+"install": "cd client && yarn install",
