@@ -44,7 +44,7 @@ mongoose
 // }
 // ** if (true) {  -- TEST LOCAL DEV_ENV-create
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  app.use(express.static("./client/build"));
   console.log("🚀 production ON");
 }
 
