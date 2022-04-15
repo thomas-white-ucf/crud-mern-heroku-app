@@ -21,29 +21,31 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 //
+app.use(express.static("public"));
 //
 
 // *__Database connect..
 mongoose
   .connect(CONNECTION_URL)
-  .then(() =>
-    app.listen(PORT, () =>
-      console.log(
-        `Server And Database connected, server is running on PORT: ${PORT}`
-      )
-    )
-  )
+  .then(() => console.log(`Connected, server is running on PORT: ${PORT}`))
   .catch((error) => console.log(error.message));
 
 // ! Make sure to Specify Routes after Middleware-
-app.use("/posts", postsRoutes);
+// app.use("/posts", postsRoutes);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
 app.get("/", (req, res) => {
   res.send("Hello from Homepage. =] App/Server is Running_>");
 });
-// app.use(express.static(path.join(__dirname, "public")));
-app.use(express.static("public"));
-app.use('/public', express.static(path.join('index.js')))
+
+app.listen(PORT, () =>
+  console.log(
+    `Server And Database connected, app.listen - PORT: ${PORT}`
+  )
+);
 
 // Step 1:
 // app.use(express.static(path.resolve("client/build")));
