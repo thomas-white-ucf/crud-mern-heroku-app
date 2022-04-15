@@ -2,8 +2,14 @@
 
 # Title 1
 
-scripts
+test scripts
+
+## Scripts
+
+"start:dev": "concurrently \"nodemon --ignore 'client/\*'\" \"yarn client\"",
+
 "heroku-postbuild": "yarn build",
+
 "install": "cd client && yarn install",
 "client": "cd client && yarn start",
 "build": "cd client && yarn build",
