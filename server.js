@@ -3,7 +3,20 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import path from "path";
+// import path from "path";
+//
+import * as url from "url";
+// const __dirname = url.fileURLToPath(
+//   new URL("client/build/index.html", import.meta.url)
+// );
+
+// console.log(__dirname.toString());
+
+import * as fs from "fs";
+const __dirname = new URL("client/build/index.html", import.meta.url);
+const dirname = fs.readFileSync(__dirname, "utf-8");
+// console.log("🚀 ~ file: server.js ~ line 18 ~ data", data)
+
 //
 // import appHTMLBaseRoutes from "./server/routes/htmlRoutes.js";
 import postsRoutes from "./server/routes/posts.js";
@@ -30,7 +43,8 @@ mongoose
 if (process.env.NODE_ENV === "production") {
   // * if production -- static path /client/build/index.js
   // app.use(express.static(path.resolve("/client/build")));
-  app.use(express.static(path.join(__dirname, "client/build")));
+  // app.use(express.static(path.join(__dirname, "client/build")));
+  app.use(express.static(path.join(dirname, "client/build")));
   // app.use(express.static("client/build"));
 }
 
@@ -38,11 +52,13 @@ app.use("/posts", postsRoutes);
 // !Define any API routes before this runs - contains ** and "/"
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/build/index.html"));
+  // res.sendFile(path.join(__dirname, "client/build/index.html"));
+  res.sendFile(path.join(dirname, "client/build/index.html"));
 });
 
 app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "client/public/index.html"));
+  // res.sendFile(path.join(__dirname, "client/public/index.html"));
+  res.sendFile(path.join(dirname, "client/public/index.html"));
 });
 
 //**listen PORT ________
