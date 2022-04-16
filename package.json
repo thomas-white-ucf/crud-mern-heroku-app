@@ -7,9 +7,8 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "start:client": "node client/src/index.js",
     "dev": "concurrently \"nodemon --ignore 'client/*'\" \" yarn client\"",
-    "heroku-postbuild": "cd client && yarn && yarn build",
+    "heroku-postbuild": "cd client && yarn install && yarn build",
     "u": "yarn upgrade --latest",
     "u-i": "yarn upgrade-interactive --latest",
     "i-check": "yarn install --check-files"
