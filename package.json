@@ -12,7 +12,8 @@
     "u-i": "yarn upgrade-interactive --latest",
     "i-check": "yarn install --check-files",
     "dev": "nodemon server.js",
-    "start": "concurrently --kill-others-on-fail \"yarn server.js\" \"yarn start --prefix client\""
+    "start": "concurrently --kill-others-on-fail \"yarn start:prod\" \"yarn start --prefix client\"",
+    "start:prod": "node server.js"
   },
   "keywords": [
     "heroku"
