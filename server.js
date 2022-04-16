@@ -5,9 +5,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
 //
-import appHTMLBaseRoutes from "./other/htmlRoutes.js";
+// import appHTMLBaseRoutes from "./server/routes/htmlRoutes.js";
 import postsRoutes from "./server/routes/posts.js";
-
 
 dotenv.config({ path: "./config.env" });
 const PORT = process.env.PORT || 5000;
@@ -40,7 +39,7 @@ app.get("/", (req, res) => {
   // __dirname : it will resolve in your project
 });
 
-appHTMLBaseRoutes.get("*", function (req, res) {
+app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
 
