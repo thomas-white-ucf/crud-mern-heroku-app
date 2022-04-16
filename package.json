@@ -6,12 +6,13 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
     "heroku-postbuild": "cd client && yarn install && yarn build",
     "build": "cd client && yarn start",
     "u": "yarn upgrade --latest",
     "u-i": "yarn upgrade-interactive --latest",
-    "i-check": "yarn install --check-files"
+    "i-check": "yarn install --check-files",
+    "dev": "nodemon server.js",
+    "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn start --prefix client\""
   },
   "keywords": [
     "heroku"
