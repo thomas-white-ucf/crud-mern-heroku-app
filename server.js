@@ -20,7 +20,9 @@ const CONNECTION_URL = process.env.ATLAS_URI;
 // *____Middleware
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(express.static("client/public"));
+
+// app.use(express.static("/client/public"));
+app.use(express.static("/client/build"));
 app.use(cors());
 
 // *__Database connect..
@@ -55,6 +57,10 @@ router.get("/", (req, res) => {
 
 app.use("/", router);
 app.use("/posts", postsRoutes);
+
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
 
 app.listen(PORT, () => {
   console.log(`API server now on port ${PORT}!`);
