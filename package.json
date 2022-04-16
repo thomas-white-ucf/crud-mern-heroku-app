@@ -9,7 +9,6 @@
     "start": "node server.js",
     "dev": "concurrently \"nodemon --ignore 'client/*'\" \" yarn client\"",
     "install": "cd client && yarn install",
-    "build": "cd client && yarn build",
     "client": "cd client && npm run start",
     "heroku-postbuild": "cd client && yarn build",
     "u": "yarn upgrade --latest",
