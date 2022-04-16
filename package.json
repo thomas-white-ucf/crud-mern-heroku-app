@@ -6,7 +6,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "heroku-postbuild": "cd client && yarn install && yarn build-client",
+    "heroku-postbuild": "cd client && yarn install",
     "build-client": "cd client && yarn run build",
     "u": "yarn upgrade --latest",
     "u-i": "yarn upgrade-interactive --latest",
