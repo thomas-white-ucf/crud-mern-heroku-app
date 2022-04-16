@@ -15,6 +15,7 @@ test scripts
 "install": "cd client && yarn install",
 "client": "cd client && yarn start",
 "build": "cd client && yarn build",
+"build": "cd client && yarn start",
 
 "start": "concurrently --kill-others-on-fail \"yarn start:prod\" \"yarn start --prefix client\"",
 

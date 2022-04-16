@@ -7,7 +7,6 @@
   "type": "module",
   "scripts": {
     "heroku-postbuild": "cd client && yarn install && yarn build",
-    "build": "cd client && yarn start",
     "u": "yarn upgrade --latest",
     "u-i": "yarn upgrade-interactive --latest",
     "i-check": "yarn install --check-files",
