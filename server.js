@@ -35,12 +35,15 @@ app.use("/posts", postsRoutes);
 // !Define any API routes before this runs - contains ** and "/"
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "/client/build/index.html"));
+  //            __dirname,
   // __dirname : it will resolve in your project
+
+  res.sendFile(path.join("/client/build/index.html"));
 });
 
 app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+  //         __dirname,
+  res.sendFile(path.join("../client/build/index.html"));
 });
 
 //**listen PORT ________
