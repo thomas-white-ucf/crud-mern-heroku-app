@@ -18,7 +18,7 @@ const app = express();
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 // app.use(express.static("client/public"));
-app.use(express.static("/client/build"));
+app.use(express.static("client/build"));
 app.use(cors());
 
 // *__Database connect..
@@ -29,8 +29,8 @@ mongoose
 
 if (process.env.NODE_ENV === "production") {
   // * if production -- static path /client/build/index.js
-  app.use(express.static(path.resolve("/client/build")));
-  // app.use(express.static(path.resolve(__dirname, "client/build")));
+  // app.use(express.static(path.resolve("/client/build")));
+  app.use(express.static(path.join(__dirname, "client/build")));
   // app.use(express.static("client/build"));
 }
 
@@ -38,15 +38,11 @@ app.use("/posts", postsRoutes);
 // !Define any API routes before this runs - contains ** and "/"
 
 app.get("/", (req, res) => {
-  //            __dirname,
-  // __dirname : it will resolve in your project
-
-  res.sendFile(path.join("client/build/index.html"));
+  res.sendFile(path.join(__dirname, "client/build/index.html"));
 });
 
 app.get("*", function (req, res) {
-  //         __dirname,
-  res.sendFile(path.join("client/build/index.html"));
+  res.sendFile(path.join(__dirname, "client/public/index.html"));
 });
 
 //**listen PORT ________
