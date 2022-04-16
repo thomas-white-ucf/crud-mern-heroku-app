@@ -5,6 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import postsRoutes from "./server/routes/posts.js";
 // Accessing the path module - available default now ?
+import appHTMLBaseRoute from "./server/routes/htmlRoutes.js";
 import path from "path";
 
 const router = express.Router();
@@ -21,6 +22,7 @@ const CONNECTION_URL = process.env.ATLAS_URI;
 // *____Middleware
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+app.use(express.static("public"));
 app.use(cors());
 //
 
@@ -30,15 +32,17 @@ mongoose
   .then(() => console.log(`MongoDB connected`))
   .catch((error) => console.log(error.message));
 
+//
+//
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.resolve(__dirname, "/client/build")));
-  // app.use(express.static("client/build"));
+  // app.use(express.static(path.resolve(__dirname, "/client/build")));
+  app.use(express.static("client/build"));
 }
 // ! Make sure to Specify Routes after Middleware-
 // Define API routes here
 // *____Routes
-app.use("/posts", postsRoutes);
+// require("./server/routes/htmlRoutes")(app);
 // app.use(require("./routes/record"));
 // app.use("/users", usersRoutes);
 // app.get("/", (req, res) => {
@@ -46,18 +50,15 @@ app.use("/posts", postsRoutes);
 // });
 
 //
-app.use("/", router);
-
-router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "/client/build/index.html"));
-  // __dirname : it will resolve in your project
-});
+app.use("/posts", postsRoutes);
+app.use("/", appHTMLBaseRoute);
 
 // Send every other request to the React app
 // !Define any API routes before this runs
 
-app.get("*", (req, res) => {
+router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/client/build/index.html"));
+  // __dirname : it will resolve in your project
 });
 
 app.listen(PORT, () => {
