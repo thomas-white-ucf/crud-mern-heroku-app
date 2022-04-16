@@ -16,4 +16,8 @@ test scripts
 "client": "cd client && yarn start",
 "build": "cd client && yarn build",
 
+"start": "concurrently --kill-others-on-fail \"yarn start:prod\" \"yarn start --prefix client\"",
+
+## Old imports from Server.js
+
 // import dbo from "./db/conn.js";
