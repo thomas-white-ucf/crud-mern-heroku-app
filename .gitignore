@@ -3,11 +3,7 @@ node_modules
 config.env
 .DS_Store
 
-other
-other_files
+config.env
+node_modules
 
-server/config.env
-server/node_modules
-
-# new ~~/ notes
-work_FLOW_notes.js
+/other
