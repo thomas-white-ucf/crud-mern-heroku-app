@@ -9,7 +9,7 @@
     "start": "if-env NODE_ENV=production && yarn start:prod || yarn dev",
     "start:prod": "node server.js",
     "dev": "nodemon server.js",
-    "heroku-postbuild": "cd client && yarn start",
+    "heroku-postbuild": "cd client && yarn build",
     "build": "cd client && yarn build",
     "serve": "cd client && yarn serve -s build",
     "u": "yarn upgrade --latest",
