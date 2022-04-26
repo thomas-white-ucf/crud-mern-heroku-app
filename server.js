@@ -51,11 +51,11 @@ if (currentENV === "production") {
 // app.use("/posts", postsRoutes);
 // !Define any API routes before this runs - contains "*"and "/"
 
-// app.get("/", (req, res) => {
-//   res.sendFile("./client/public/index.html", { root: __dirname });
-//   // res.sendFile(path.join(dirname, "client/build/index.html"));
-//   // res.sendFile("client/public/index.html", { root: "." });
-// });
+app.get("/", (req, res) => {
+  res.sendFile("./client/public/index.html", { root: __dirname });
+  // res.sendFile(path.join(dirname, "client/build/index.html"));
+  // res.sendFile("client/public/index.html", { root: "." });
+});
 
 //**listen PORT ________
 app.listen(PORT, () => {
