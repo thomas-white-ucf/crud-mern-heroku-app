@@ -13,7 +13,7 @@
     "dev": "nodemon server.js",
     "heroku-postbuild": "yarn install && yarn build",
     "heroku-postbuild-old": "cd client && yarn build",
-    "build": "cd client && yarn install &&  yarn build",
+    "build": "cd client &&  yarn build",
     "build-old": "cd client && yarn build",
     "serve": "cd client && yarn serve",
     "serve-old": "cd client && yarn serve -s build",
