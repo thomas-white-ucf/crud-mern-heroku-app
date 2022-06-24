@@ -19,7 +19,8 @@
     "serve-old": "cd client && yarn serve -s build",
     "u": "yarn upgrade --latest",
     "u-i": "yarn upgrade-interactive --latest",
-    "i-check": "yarn install --check-files && cd client && yarn install --check-files"
+    "i-check": "yarn install --check-files && cd client && yarn install --check-files",
+    "publish-to-heroku": "git push heroku main"
   },
   "keywords": [
     "heroku"
