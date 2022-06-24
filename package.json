@@ -6,12 +6,14 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "if-env NODE_ENV=production && yarn start:prod || yarn dev",
+    "start": "if-env NODE_ENV=production yarn start:prod || yarn dev",
+    "start-&&-old": "if-env NODE_ENV=production && yarn start:prod || yarn dev",
     "start:prod": "node server.js",
     "dev": "nodemon server.js",
     "heroku-postbuild": "cd client && yarn build",
     "build": "cd client && yarn build",
-    "serve": "cd client && yarn serve -s build",
+    "serve": "cd client && serve",
+    "serve-old": "cd client && yarn serve -s build",
     "u": "yarn upgrade --latest",
     "u-i": "yarn upgrade-interactive --latest",
     "i-check": "yarn install --check-files"
@@ -22,17 +24,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^7.1.0",
+    "concurrently": "^7.2.2",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.0",
-    "express": "^4.18.0",
+    "cron": "^2.0.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
     "if-env": "^1.0.4",
-    "mongodb": "^4.5.0",
-    "mongoose": "^6.3.1",
+    "mongodb": "^4.7.0",
+    "mongoose": "^6.4.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15",
+    "nodemon": "^2.0.18",
     "server": "^1.0.37"
   },
   "engines": {
