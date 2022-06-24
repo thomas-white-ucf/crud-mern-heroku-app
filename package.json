@@ -11,7 +11,7 @@
     "start-&&-old": "if-env NODE_ENV=production && yarn start:prod || yarn dev",
     "start:prod": "node server.js",
     "dev": "nodemon server.js",
-    "heroku-postbuild": "yarn build",
+    "heroku-postbuild": "yarn start",
     "heroku-postbuild-old": "cd client && yarn build",
     "build": "cd client && yarn install && yarn build",
     "build-old": "cd client && yarn build",
