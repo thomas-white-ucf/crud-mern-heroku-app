@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "add-commit": "git add . && git commit -m 'auto add . && and commit'",
-    "start": "if-env NODE_ENV=production yarn start:prod || yarn dev",
+    "start": "yarn start:prod",
     "start-&&-old": "if-env NODE_ENV=production && yarn start:prod || yarn dev",
     "start:prod": "node server.js",
     "dev": "nodemon server.js",
