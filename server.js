@@ -4,23 +4,29 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
-// import * as fs from "fs";
-// import postsRoutes from "./routes/posts.js";
+import * as fs from "fs";
+import postsRoutes from "./routes/posts.js";
 //
 
-dotenv.config({ path: "./config.env" });
+dotenv.config({ path: "./env" });
+// dotenv.config({ path: "./config.env" });
 // dotenv.config();
 
 // * DEFINE CONSTANTS
 const app = express();
-const currentENV = process.env.NODE_ENV;
 const PORT = process.env.PORT || 5000;
 const CONNECTION_URL = process.env.ATLAS_URI;
 
-console.log("\n currentENV =", currentENV, "\n ___If undefined = local");
+// const currentENV = "production";
+// const currentENV = process.env.NODE_ENV;
+// console.log(
+//   "\n currentENV =",
+//   currentENV,
+//   "\n currentENV___If undefined = local"
+// );
 
-// __dirname = new URL("client/build", import.meta.url),
-// dirname = fs.readFileSync(__dirname, "utf-8");
+// const __dirname = new URL("client/build", import.meta.url);
+// const dirname = fs.readFileSync(__dirname, "utf-8");
 
 // console.log("🚀 ~ file: server.js ~ line 18 ~ dirname", dirname);
 
@@ -36,28 +42,29 @@ mongoose
   .then(() => console.log(`\n MongoDB connected`))
   .catch((error) => console.log(error.message));
 
-if (currentENV === "production") {
-  // * if production -- static path /client/build/index.js
-  // app.use(express.static(path.join(dirname, "client/build")));
-  app.use(express.static("client/build"));
+// if (currentENV === "production") {
+//   // * if production -- static path /client/build/index.js
+//   // app.use(express.static(path.join(dirname, "client/build")));
+//   app.use(express.static("client/build"));
 
-  app.get("*", function (req, res) {
-    // res.sendFile(path.join(dirname, "client/public/index.html"));
-    // res.sendFile(path.join(__dirname + "../client/build/index.html"));
-    res.sendFile(path.resolve(__dirname, "client/build", "index.html"));
-    console.log("server.js ~ line 51___________ __dirname", __dirname);
-  });
-} else {
-  // app.use("/posts", postsRoutes);
-  // !Define any API routes before this runs - contains "*"and "/"
+//   app.get("*", function (req, res) {
+//     // res.sendFile(path.join(dirname, "client/public/index.html"));
+//     // res.sendFile(path.join(__dirname + "../client/build/index.html"));
+//     res.sendFile(path.resolve(dirname, "client/build", "index.html"));
+//     // res.sendFile(path.resolve(__dirname, "client/build", "index.html"));
+//     console.log("server.js ~ line 51___________ __dirname", __dirname);
+//   });
+// } else {
+app.use("/posts", postsRoutes);
+// !Define any API routes before this runs - contains "*"and "/"
 
-  app.get("/", (req, res) => {
-    res.sendFile("./client/public/index.html", { root: "." });
-    // res.sendFile("./client/public/index.html", { root: __dirname });
-    // res.sendFile(path.join(dirname, "client/build/index.html"));
-    // res.sendFile("client/public/index.html", { root: "." });
-  });
-}
+app.get("/", (req, res) => {
+  res.sendFile("./client/public/index.html", { root: "." });
+  // res.sendFile("./client/public/index.html", { root: __dirname });
+  // res.sendFile(path.join(dirname, "client/build/index.html"));
+  // res.sendFile("client/public/index.html", { root: "." });
+});
+// }
 
 //**listen PORT ________
 app.listen(PORT, () => {

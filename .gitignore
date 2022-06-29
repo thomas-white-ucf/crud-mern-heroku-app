@@ -1,6 +1,6 @@
-node_modules
+ode_modules
 .env
-config.env
+.config.env
 .DS_Store
 
 config.env

@@ -33,14 +33,6 @@ export const updatePost = async (req, res) => {
   const { id: _id } = req.params;
   const post = req.body;
 
-  // console.log("update post ID ___ FROM CONTROLLER _ID > ", _id);
-
-  //   if (err) {
-  //     console.log(err);
-  //     res.sendStatus(500);
-  //     return;
-  // }
-
   if (!mongoose.Types.ObjectId.isValid(_id))
     return res.status(404).send("No post with that id");
 
@@ -71,7 +63,7 @@ export const deletePost = async (req, res) => {
   try {
     await PostMessage.findByIdAndRemove(id);
     // res.status(200)
-    console.log("DELETE DELETE DELETE DELETE DELETE");
+    console.log("T_____ DELETE");
     res.json({ message: "Deleted by id." });
   } catch (error) {
     console.log(error);
@@ -79,8 +71,28 @@ export const deletePost = async (req, res) => {
   }
 };
 
-//   if (err) {
-//     console.log(err);
-//     res.sendStatus(500);
-//     return;
-// }
+export const likePost = async (req, res) => {
+  const { id } = req.params;
+  // const post = req.body;
+
+  //* Make sure _id is valid
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send("No post with that id");
+
+  // * Try to Delete by id
+  try {
+    const post = await PostMessage.findById(id);
+    const updatedPost = await PostMessage.findByIdAndUpdate(
+      id,
+      {
+        likeCount: post.likeCount + 1,
+      },
+      { new: true }
+    );
+
+    res.json(updatePost);
+  } catch (error) {
+    console.log(error);
+    // res.status(404.)
+  }
+};
