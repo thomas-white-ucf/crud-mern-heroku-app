@@ -17,8 +17,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const CONNECTION_URL = process.env.ATLAS_URI;
 
-// const currentENV = "production";
 const currentENV = process.env.NODE_ENV;
+// const currentENV = "production";
 console.log(
   "\n currentENV =",
   currentENV,
