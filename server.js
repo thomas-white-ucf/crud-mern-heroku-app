@@ -6,29 +6,24 @@ import dotenv from "dotenv";
 // import path from "path";
 // import * as fs from "fs";
 import postsRoutes from "./routes/posts.js";
-//
 
 dotenv.config({ path: "./env" });
-// dotenv.config({ path: "./config.env" });
-// dotenv.config();
 
-// * DEFINE CONSTANTS
 const app = express();
 const PORT = process.env.PORT || 5000;
+console.log("🚀 ~ file: server.js ~ line 14 ~ PORT", PORT);
 const CONNECTION_URL = process.env.ATLAS_URI;
 
-// const currentENV = "production";
-const currentENV = process.env.NODE_ENV;
+const currentENV = "production";
+// const currentENV = process.env.NODE_ENV;
 console.log(
   "\n currentENV =",
   currentENV,
-  "\n currentENV___If undefined = local"
+  "\n **currentENV___If undefined = local \n"
 );
 
 // const __dirname = new URL("client/build", import.meta.url);
 // const dirname = fs.readFileSync(__dirname, "utf-8");
-
-// console.log("🚀 ~ file: server.js ~ line 18 ~ dirname", dirname);
 
 // *____Middleware
 app.use(bodyParser.json({ limit: "30mb", extended: true }));

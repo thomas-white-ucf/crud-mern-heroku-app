@@ -1,6 +1,6 @@
 {
   "name": "crud-mern-heroku-app",
-  "homepage": "https://crud-mern-heroku-app.herokuapp.com/",
+  "homepage": "https://localhost:3000",
   "version": "1.0.0",
   "description": "Creating a boilerplate for MERN code stacks",
   "main": "server.js",
@@ -25,15 +25,17 @@
   "keywords": [
     "heroku"
   ],
-  "author": "",
+  "author": "t white",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "concurrently": "^7.2.2",
     "cors": "^2.8.5",
     "cron": "^2.0.0",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "if-env": "^1.0.4",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.7.0",
     "mongoose": "^6.4.1",
     "uuid": "^8.3.2"

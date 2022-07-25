@@ -1,13 +1,12 @@
 import express from "express";
 // _import custom hooks_
 import {
-  getUsers, 
+  getUsers,
   createUser,
   findUser,
   deleteUser,
   updateUserPATCH,
 } from "../controllers/users.js";
-
 
 //!___router =
 const router = express.Router();
@@ -25,10 +24,5 @@ router.delete("/:id", deleteUser);
 
 // **==PATCH
 router.patch("/:id", updateUserPATCH);
-
-//
-//
-//
-// !_ default
 
 export default router;
